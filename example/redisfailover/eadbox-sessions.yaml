@@ -1,0 +1,22 @@
+apiVersion: databases.spotahome.com/v1
+kind: RedisFailover
+metadata:
+  name: redisfailover-eadbox-sessions
+  namespace: redis
+spec:
+  sentinel:
+    replicas: 3
+  redis:
+    securityContext:
+      fsGroup: 0
+    replicas: 3
+    storage:
+      persistentVolumeClaim:
+        metadata:
+          name: redisfailover-eadbox-sessions-data
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
