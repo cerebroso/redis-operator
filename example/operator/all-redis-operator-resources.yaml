@@ -16,6 +16,15 @@ spec:
       labels:
         app: redisoperator
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                - app-pool
       serviceAccountName: redisoperator
       containers:
         - image: quay.io/spotahome/redis-operator:latest

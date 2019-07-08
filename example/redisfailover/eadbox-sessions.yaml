@@ -7,10 +7,26 @@ spec:
   sentinel:
     replicas: 3
   redis:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: cloud.google.com/gke-nodepool
+              operator: In
+              values:
+              - redis
     securityContext:
       fsGroup: 0
     replicas: 3
+    customConfig:
+      - "maxmemory 4294967296"
+      - "maxmemory-policy allkeys-lru"
+    resources:
+      limits:
+        memory: 4Gi
     storage:
+      keepAfterDeletion: true
       persistentVolumeClaim:
         metadata:
           name: redisfailover-eadbox-sessions-data
@@ -19,4 +35,4 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 1Gi
+              storage: 4Gi
