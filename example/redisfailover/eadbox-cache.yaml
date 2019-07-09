@@ -20,13 +20,11 @@ spec:
       fsGroup: 0
     replicas: 3
     customConfig:
-      - "maxmemory 17179869184"
+      - "maxmemory 8589934592"
       - "maxmemory-policy allkeys-lru"
     resources:
       requests:
         memory: 8Gi
-      limits:
-        memory: 16Gi
     storage:
       keepAfterDeletion: true
       persistentVolumeClaim:
