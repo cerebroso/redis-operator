@@ -6,16 +6,25 @@ metadata:
 spec:
   sentinel:
     replicas: 3
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - redis
   redis:
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
-          - matchExpressions:
-            - key: cloud.google.com/gke-nodepool
-              operator: In
-              values:
-              - redis
+            - matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - redis
     securityContext:
       fsGroup: 0
     replicas: 3
