@@ -27,18 +27,18 @@ spec:
                     - redis
     securityContext:
       fsGroup: 0
-    replicas: 3
+    replicas: 5
     customConfig:
-      - "maxmemory 8589934592"
+      - "maxmemory 11811160064"
       - "maxmemory-policy allkeys-lru"
     resources:
       requests:
-        memory: 8Gi
+        memory: 12Gi
     storage:
-      keepAfterDeletion: true
+      keepAfterDeletion: false
       persistentVolumeClaim:
         metadata:
-          name: redisfailover-eadbox-cache-data
+          name: redisfailover-eadbox-cache-data-new
         spec:
           accessModes:
             - ReadWriteOnce
