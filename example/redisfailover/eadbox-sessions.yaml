@@ -33,15 +33,15 @@ spec:
       - "maxmemory-policy allkeys-lru"
     resources:
       limits:
-        memory: 4Gi
+        memory: 6Gi
     storage:
       keepAfterDeletion: true
       persistentVolumeClaim:
         metadata:
-          name: redisfailover-eadbox-sessions-data
+          name: redisfailover-eadbox-sessions-data-really-new
         spec:
           accessModes:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 4Gi
+              storage: 6Gi

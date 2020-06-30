@@ -27,13 +27,13 @@ spec:
                     - redis
     securityContext:
       fsGroup: 0
-    replicas: 4
+    replicas: 3
     customConfig:
       - "maxmemory 8589934592"
       - "maxmemory-policy allkeys-lru"
     resources:
       requests:
-        memory: 10Gi
+        memory: 5Gi
       limits:
         memory: 16Gi
     storage:
